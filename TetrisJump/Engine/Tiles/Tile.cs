@@ -21,7 +21,8 @@ namespace TetrisJump.Engine.Tiles
             Blue,
             Green,
             Yellow,
-            Orange
+            Orange,
+            Pink
         }
     }
 }

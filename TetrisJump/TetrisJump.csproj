@@ -44,6 +44,7 @@
   <ItemGroup>
     <Compile Include="Engine\Level.cs" />
     <Compile Include="Engine\LevelFile.cs" />
+    <Compile Include="Engine\Player.cs" />
     <Compile Include="Engine\Screen.cs" />
     <Compile Include="Engine\Textures\Animation.cs" />
     <Compile Include="Engine\Textures\TextureManager.cs" />

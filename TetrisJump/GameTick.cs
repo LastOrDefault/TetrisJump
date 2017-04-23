@@ -11,7 +11,7 @@ namespace TetrisJump
         /// </summary>
         public bool IsFreezed { get; set; } = false;
 
-        readonly int TicksPerSecond;
+        readonly double TicksPerSecond;
 
         /// <summary>
         /// 
@@ -27,7 +27,7 @@ namespace TetrisJump
         /// <summary>
         /// Neuer GameTick
         /// </summary>
-        public GameTick(int ticksPerSecond)
+        public GameTick(double ticksPerSecond)
         {
             elapsedTime = 0;
             TicksPerSecond = ticksPerSecond;

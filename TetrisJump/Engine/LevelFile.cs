@@ -13,9 +13,13 @@ namespace TetrisJump.Engine
         public LevelFile()
         {
             Tiles = new List<Point>();
+            TetrisTiles = new List<byte>();
         }
 
         public Point Size { get; set; }
         public List<Point> Tiles { get; set; }
+        public List<byte> TetrisTiles { get; set; }
+        public Point Start { get; set; }
+        public Point Goal { get; set; }
     }
 }

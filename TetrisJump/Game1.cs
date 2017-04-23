@@ -62,6 +62,22 @@ namespace TetrisJump
             TextureManager.LoadTexture("Green", "Tiles/Green");
             TextureManager.LoadTexture("Orange", "Tiles/Orange");
             TextureManager.LoadTexture("Yellow", "Tiles/Yellow");
+            TextureManager.LoadTexture("Pink", "Tiles/Pink");
+            TextureManager.LoadTexture("Start", "Tiles/Start");
+            TextureManager.LoadTexture("Goal", "Tiles/Goal");
+
+            TextureManager.LoadTexture("Player", "Jump/Player", 8, 500);
+            TextureManager.LoadTexture("PlayerLeft", "Jump/PlayerLeft", 8, 500);
+            TextureManager.LoadTexture("PlayerRight", "Jump/PlayerRight", 8, 500);
+
+
+            TextureManager.Font = Content.Load<SpriteFont>("Font");
+            TextureManager.BigFont = Content.Load<SpriteFont>("BigFont");
+
+            TextureManager.LoadSound("Drop", "Sounds/Drop");
+            TextureManager.LoadSound("Jump", "Sounds/Jump");
+            TextureManager.LoadSound("Level", "Sounds/Level");
+            TextureManager.LoadSound("Restart", "Sounds/Restart");
         }
 
         /// <summary>
@@ -84,6 +100,7 @@ namespace TetrisJump
                 Exit();
 
             TextureManager.Update(gameTime);
+            KeyboardManager.Update();
             Screen.Update(gameTime);
 
             base.Update(gameTime);

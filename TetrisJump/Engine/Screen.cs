@@ -31,13 +31,13 @@ namespace TetrisJump.Engine
         {
             Tick = new GameTick(50);
             Tick.tick += Tick_tick;
-            TetrisTick = new GameTick(3);
+            TetrisTick = new GameTick(1.5);
             TetrisTick.tick += TetrisTick_tick;
 
             TetrisTick.IsFreezed = true;
             State = GameState.Ready;
             BufferInput = "";
-            LevelId = 1;
+            LevelId = 5;
         }
 
         public static void Initialize()
@@ -45,6 +45,7 @@ namespace TetrisJump.Engine
             Level = new Level($"Levels/level{LevelId}.level");
             State = GameState.Ready;
             TetrisTiles = null;
+            TetrisTick.IsFreezed = true;
         }
 
         private static void TetrisTick_tick(GameTime gameTime)
@@ -103,6 +104,11 @@ namespace TetrisJump.Engine
                         BufferInput = "Left";
                     if (KeyboardManager.IsKeyPressed("D", true))
                         BufferInput = "Right";
+                    if (KeyboardManager.IsKeyPressed("R", true))
+                    {
+                        TextureManager.PlaySound("Restart");
+                        Initialize();
+                    }
                     //if (KeyboardManager.IsKeyPressed("Enter"))
                     //    StartJumpState();
                     break;
@@ -122,7 +128,7 @@ namespace TetrisJump.Engine
                     {
                         if (OnGround)
                         {
-                            Jump = 8;
+                            Jump = 14;
                             OnGround = false;
                             TextureManager.PlaySound("Jump");
                         }

@@ -37,7 +37,7 @@ namespace TetrisJump.Engine
             TetrisTick.IsFreezed = true;
             State = GameState.Ready;
             BufferInput = "";
-            LevelId = 5;
+            LevelId = 1;
         }
 
         public static void Initialize()

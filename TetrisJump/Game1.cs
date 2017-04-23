@@ -1,6 +1,10 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System.IO;
+using System.Xml.Serialization;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using TetrisJump.Engine;
+using TetrisJump.Engine.Textures;
 
 namespace TetrisJump
 {
@@ -26,7 +30,18 @@ namespace TetrisJump
         /// </summary>
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
+
+            graphics.PreferredBackBufferHeight = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
+            graphics.PreferredBackBufferWidth = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
+            graphics.ApplyChanges();
+
+            Screen.Size =
+                new Point(GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width,
+                    GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height);
+
+            TextureManager.Content = Content;
+
+            Screen.Initialize();
 
             base.Initialize();
         }
@@ -40,7 +55,13 @@ namespace TetrisJump
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            // TODO: use this.Content to load your game content here
+            TextureManager.LoadTexture("Background", "Background");
+
+            TextureManager.LoadTexture("Red", "Tiles/Red");
+            TextureManager.LoadTexture("Blue", "Tiles/Blue");
+            TextureManager.LoadTexture("Green", "Tiles/Green");
+            TextureManager.LoadTexture("Orange", "Tiles/Orange");
+            TextureManager.LoadTexture("Yellow", "Tiles/Yellow");
         }
 
         /// <summary>
@@ -62,7 +83,8 @@ namespace TetrisJump
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            // TODO: Add your update logic here
+            TextureManager.Update(gameTime);
+            Screen.Update(gameTime);
 
             base.Update(gameTime);
         }
@@ -75,8 +97,11 @@ namespace TetrisJump
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            // TODO: Add your drawing code here
+            spriteBatch.Begin();
 
+            Screen.Draw(spriteBatch);
+
+            spriteBatch.End();
             base.Draw(gameTime);
         }
     }
